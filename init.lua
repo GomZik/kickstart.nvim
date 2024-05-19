@@ -570,7 +570,9 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
+        pylsp = {},
         pyright = {},
+        ruff_lsp = {},
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -580,6 +582,7 @@ require('lazy').setup({
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
         elmls = {},
+        cssls = {},
         --
 
         lua_ls = {
@@ -662,6 +665,7 @@ require('lazy').setup({
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         javascript = { { 'prettierd', 'prettier' } },
+        css = { { 'prettierd', 'prettier' } },
       },
     },
   },

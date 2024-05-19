@@ -3,4 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  { 'f-person/git-blame.nvim' },
+  { 'tpope/vim-fugitive' },
 }

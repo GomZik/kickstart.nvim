@@ -168,6 +168,8 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Escape from insert mode by fj
 vim.keymap.set('i', 'fj', '<Esc>')
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -392,7 +394,11 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            follow = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -600,11 +606,18 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        -- GOLANG default servers
         gopls = {},
-        -- pylsp = {},
+        goimports = {},
+        ['goimports-reviser'] = {},
+        ['golangci-lint'] = {},
+        impl = {},
+
+        -- Python default servers
         pyright = {},
         ruff_lsp = {},
+        isort = {},
+        -- Rust default servers
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -686,20 +699,20 @@ require('lazy').setup({
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         return {
-          timeout_ms = 1000,
+          timeout_ms = 3000,
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'isort', 'ruff', 'black' },
+        python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         javascript = { { 'prettierd', 'prettier' } },
         css = { { 'prettierd', 'prettier' } },
-        go = { 'goimports', 'gofmt' },
+        go = { 'goimports-reviser', 'gofmt' },
       },
     },
   },

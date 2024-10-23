@@ -497,7 +497,7 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          vim.lsp.inlay_hint.enable()
+          vim.lsp.inlay_hint.enable(true)
           -- NOTE: Remember that Lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself.
           --
@@ -637,6 +637,7 @@ require('lazy').setup({
           -- capabilities = {},
           settings = {
             Lua = {
+              hints = { enable = true },
               completion = {
                 callSnippet = 'Replace',
               },
@@ -888,7 +889,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'python', 'typescript', 'javascript' },
+      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'python', 'typescript', 'javascript', 'go' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {

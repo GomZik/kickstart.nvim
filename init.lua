@@ -624,7 +624,8 @@ require('lazy').setup({
 
         -- Python default servers
         pyright = {},
-        ruff_lsp = {},
+        --ruff_lsp = {},
+        ruff = {},
         isort = {},
         -- Rust default servers
         rust_analyzer = {},

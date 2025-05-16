@@ -629,7 +629,7 @@ require('lazy').setup({
         ['goimports-reviser'] = {},
         ['golangci-lint'] = {},
         impl = {},
-        pyright = {},
+        basedpyright = {},
         mypy = {},
         ruff = {},
         --black = {},
